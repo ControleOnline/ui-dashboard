@@ -34,8 +34,7 @@
         </div>
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
-            <q-card-section>
-              <h6>Quantidade Média de Veículos</h6>
+            <q-card-section>              
               <DxChart
                 id="vehicleChart"
                 :data-source="vehicleData"
@@ -65,7 +64,6 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h6>Gráfico de Atendimentos</h6>
               <DxChart
                 id="attendanceChart"
                 :data-source="attendanceData"
@@ -95,7 +93,6 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h6>Por Shampoozeira</h6>
               <DxChart
                 id="shampoozeiraChart"
                 :data-source="shampoozeiraData"
@@ -125,7 +122,6 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h6>Por Horário</h6>
               <DxChart
                 id="timeChart"
                 :data-source="timeData"

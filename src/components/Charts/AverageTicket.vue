@@ -1,7 +1,6 @@
 <template>
   <q-card>
     <q-card-section>
-      <h6>Ticket Médio</h6>
       <DxChart
         id="ticketChart"
         :data-source="ticketData"
