@@ -18,6 +18,7 @@
           </DxLabel>
         </DxCommonSeriesSettings>
         <DxSeries value-field="value" name="Valor" />
+        <DxSeries value-field="qtd" name="Quantidade" />
         <DxLegend vertical-alignment="bottom" horizontal-alignment="center" />
         <DxExport :enabled="true" />
       </DxChart>
@@ -59,6 +60,9 @@ export default {
         { period: "Dia", value: 100 },
         { period: "Semana", value: 700 },
         { period: "Mês", value: 3000 },
+        { period: "Dia", qtd: 100 },
+        { period: "Semana", qtd: 700 },
+        { period: "Mês", qtd: 3000 },
       ],
     };
   },
