@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <h1>Dashboard</h1>
+      <h6>Dashboard</h6>
       <!-- Campos de data para filtragem -->
       <div class="q-gutter-md row items-center q-mb-md">
         <q-input
@@ -35,7 +35,7 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h2>Quantidade Média de Veículos</h2>
+              <h6>Quantidade Média de Veículos</h6>
               <DxChart
                 id="vehicleChart"
                 :data-source="vehicleData"
@@ -65,7 +65,7 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h2>Gráfico de Atendimentos</h2>
+              <h6>Gráfico de Atendimentos</h6>
               <DxChart
                 id="attendanceChart"
                 :data-source="attendanceData"
@@ -95,7 +95,7 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h2>Por Shampoozeira</h2>
+              <h6>Por Shampoozeira</h6>
               <DxChart
                 id="shampoozeiraChart"
                 :data-source="shampoozeiraData"
@@ -125,7 +125,7 @@
         <div class="col-12 col-md-6 q-pa-md">
           <q-card>
             <q-card-section>
-              <h2>Por Horário</h2>
+              <h6>Por Horário</h6>
               <DxChart
                 id="timeChart"
                 :data-source="timeData"
