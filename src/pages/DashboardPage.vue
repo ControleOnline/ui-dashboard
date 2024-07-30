@@ -120,33 +120,7 @@
           </q-card>
         </div>
         <div class="col-12 col-md-6 q-pa-md">
-          <q-card>
-            <q-card-section>
-              <DxChart
-                id="timeChart"
-                :data-source="timeData"
-                title="Por Horário"
-                @pointClick="onPointClick"
-              >
-                <DxCommonSeriesSettings
-                  argument-field="time"
-                  type="bar"
-                  hover-mode="allArgumentPoints"
-                  selection-mode="allArgumentPoints"
-                >
-                  <DxLabel :visible="true">
-                    <DxFormat :precision="0" type="fixedPoint" />
-                  </DxLabel>
-                </DxCommonSeriesSettings>
-                <DxSeries value-field="value" name="Atendimentos" />
-                <DxLegend
-                  vertical-alignment="bottom"
-                  horizontal-alignment="center"
-                />
-                <DxExport :enabled="true" />
-              </DxChart>
-            </q-card-section>
-          </q-card>
+         <AverageHour  :startDate="startDate" :endDate="endDate" />
         </div>
       </div>
     </div>
@@ -165,6 +139,7 @@ import {
 } from "devextreme-vue/chart";
 import { QInput, QBtn, QCard, QCardSection } from "quasar";
 import AverageTicket from "../components/Charts/AverageTicket";
+import AverageHour from "../components/Charts/AverageHour";
 
 export default {
   components: {
@@ -180,6 +155,7 @@ export default {
     QCard,
     QCardSection,
     AverageTicket,
+    AverageHour,
   },
   data() {
     return {
