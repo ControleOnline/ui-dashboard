@@ -33,91 +33,13 @@
           <AverageTicket :startDate="startDate" :endDate="endDate" />
         </div>
         <div class="col-12 col-md-6 q-pa-md">
-          <q-card>
-            <q-card-section>              
-              <DxChart
-                id="vehicleChart"
-                :data-source="vehicleData"
-                title="Quantidade Média de Veículos"
-                @pointClick="onPointClick"
-              >
-                <DxCommonSeriesSettings
-                  argument-field="period"
-                  type="bar"
-                  hover-mode="allArgumentPoints"
-                  selection-mode="allArgumentPoints"
-                >
-                  <DxLabel :visible="true">
-                    <DxFormat :precision="0" type="fixedPoint" />
-                  </DxLabel>
-                </DxCommonSeriesSettings>
-                <DxSeries value-field="value" name="Valor" />
-                <DxLegend
-                  vertical-alignment="bottom"
-                  horizontal-alignment="center"
-                />
-                <DxExport :enabled="true" />
-              </DxChart>
-            </q-card-section>
-          </q-card>
+          <AverageVehicles :startDate="startDate" :endDate="endDate" />
         </div>
         <div class="col-12 col-md-6 q-pa-md">
-          <q-card>
-            <q-card-section>
-              <DxChart
-                id="attendanceChart"
-                :data-source="attendanceData"
-                title="Gráfico de Atendimentos"
-                @pointClick="onPointClick"
-              >
-                <DxCommonSeriesSettings
-                  argument-field="time"
-                  type="bar"
-                  hover-mode="allArgumentPoints"
-                  selection-mode="allArgumentPoints"
-                >
-                  <DxLabel :visible="true">
-                    <DxFormat :precision="0" type="fixedPoint" />
-                  </DxLabel>
-                </DxCommonSeriesSettings>
-                <DxSeries value-field="value" name="Atendimentos" />
-                <DxLegend
-                  vertical-alignment="bottom"
-                  horizontal-alignment="center"
-                />
-                <DxExport :enabled="true" />
-              </DxChart>
-            </q-card-section>
-          </q-card>
+          <AverageService :startDate="startDate" :endDate="endDate" />
         </div>
         <div class="col-12 col-md-6 q-pa-md">
-          <q-card>
-            <q-card-section>
-              <DxChart
-                id="shampoozeiraChart"
-                :data-source="shampoozeiraData"
-                title="Por Shampoozeira"
-                @pointClick="onPointClick"
-              >
-                <DxCommonSeriesSettings
-                  argument-field="name"
-                  type="bar"
-                  hover-mode="allArgumentPoints"
-                  selection-mode="allArgumentPoints"
-                >
-                  <DxLabel :visible="true">
-                    <DxFormat :precision="0" type="fixedPoint" />
-                  </DxLabel>
-                </DxCommonSeriesSettings>
-                <DxSeries value-field="value" name="Atendimentos" />
-                <DxLegend
-                  vertical-alignment="bottom"
-                  horizontal-alignment="center"
-                />
-                <DxExport :enabled="true" />
-              </DxChart>
-            </q-card-section>
-          </q-card>
+          <AppGraph :startDate="startDate" :endDate="endDate" />
         </div>
         <div class="col-12 col-md-6 q-pa-md">
          <AverageHour  :startDate="startDate" :endDate="endDate" />
@@ -140,6 +62,10 @@ import {
 import { QInput, QBtn, QCard, QCardSection } from "quasar";
 import AverageTicket from "../components/Charts/AverageTicket";
 import AverageHour from "../components/Charts/AverageHour";
+import AppGraph from "../components/Charts/AppGraph";
+import AverageVehicles from "../components/Charts/AverageVehicles";
+import AverageService from "../components/Charts/AverageService";
+
 
 export default {
   components: {
@@ -156,6 +82,9 @@ export default {
     QCardSection,
     AverageTicket,
     AverageHour,
+    AverageService,    
+    AverageVehicles,
+    AppGraph,
   },
   data() {
     return {

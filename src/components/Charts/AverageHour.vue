@@ -1,23 +1,15 @@
 <template>
   <q-card>
     <q-card-section>
-      <DxChart
-        id="timeChart"
-        :data-source="timeData"
-        title="Por Horário"
-        @pointClick="onPointClick"
-      >
-        <DxCommonSeriesSettings
-          argument-field="time"
-          type="bar"
-          hover-mode="allArgumentPoints"
-          selection-mode="allArgumentPoints"
-        >
+      <DxChart id="timeChart" :data-source="timeData" title="Por Horário" @pointClick="onPointClick">
+        <DxCommonSeriesSettings argument-field="time" type="bar" hover-mode="allArgumentPoints"
+          selection-mode="allArgumentPoints">
           <DxLabel :visible="true">
             <DxFormat :precision="0" type="fixedPoint" />
           </DxLabel>
         </DxCommonSeriesSettings>
-        <DxSeries value-field="value" name="Atendimentos" />
+        <DxSeries value-field="valueApp1" name="Box 1" />
+        <DxSeries value-field="valueApp2" name="Box 2" />
         <DxLegend vertical-alignment="bottom" horizontal-alignment="center" />
         <DxExport :enabled="true" />
       </DxChart>
@@ -36,6 +28,7 @@ import {
   DxExport,
 } from "devextreme-vue/chart";
 import { QInput, QBtn, QCard, QCardSection } from "quasar";
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -54,34 +47,119 @@ export default {
 
   props: {
     startDate: {
+      type: String,
       required: true,
-      default: null,
+      default: '',
     },
     endDate: {
+      type: String,
       required: true,
-      default: null,
+      default: '',
     },
   },
 
   data() {
     return {
-      timeData: [
-        { time: "08:00", value: 11 },
-        { time: "09:00", value: 99 },
-        { time: "10:00", value: 20 },
-        { time: "11:00", value: 25 },
-      ],
+      timeData: []
     };
   },
 
-  created() {
-    console.log(this.startDate, "x");
-    console.log(this.endDate, "y");
+  computed: {
+
   },
+
+  methods: {
+
+    ...mapActions({
+      getHoursTicket: 'dashboard/getHoursTicket',
+    }),
+
+
+    generateTimeData(resultArray) {
+      const app1Data = resultArray.filter(item => item.app === '1');
+      const app2Data = resultArray.filter(item => item.app === '2');
+
+      const app1Hours = app1Data.map(item => item.hour);
+      const app2Hours = app2Data.map(item => item.hour);
+
+      // Determinando o startTime e endTime para cada app
+      const startTime = Math.min(Math.min(...app1Hours), Math.min(...app2Hours));
+      const endTime = Math.max(Math.max(...app1Hours), Math.max(...app2Hours));
+
+      // Gerando timeData para cada app
+      const generateDataForApp = (data) => {
+        const quantityByHour = {};
+
+        // Agregar quantidades por hora
+        data.forEach(item => {
+          const hour = item.hour;
+          if (!quantityByHour[hour]) {
+            quantityByHour[hour] = 0;
+          }
+          quantityByHour[hour] += item.quantity;
+        });
+
+        return quantityByHour;
+      };
+
+      const quantityByHourApp1 = generateDataForApp(app1Data);
+      const quantityByHourApp2 = generateDataForApp(app2Data);
+
+      const timeData = [];
+      for (let hour = startTime; hour <= endTime; hour++) {
+        let formattedHour = hour < 10 ? `0${hour}:00` : `${hour}:00`;
+        timeData.push({
+          time: formattedHour,
+          valueApp1: quantityByHourApp1[hour] || 0,
+          valueApp2: quantityByHourApp2[hour] || 0
+        });
+      }
+
+      return timeData;
+    },
+
+
+
+
+    onPointClick({ target }) {
+      target.select();
+    },
+
+    filterData() {
+      // Lógica para filtrar dados baseada nas datas selecionadas
+      console.log(`Filtrando dados de ${this.startDate} até ${this.endDate}`);
+      // Atualizar os dados dos gráficos aqui
+    },
+
+  },
+
+
+
+  created() {
+
+    this.getHoursTicket().then((data) => {
+      let resultArray = data.map(item => ({
+        app: item.app,
+        date: item.date,
+        hour: item.hour,
+        quantity: item.quantity
+      }));
+
+      const timeData = this.generateTimeData(resultArray);
+
+      // Use a data estruturada retornada por generateTimeData
+      this.timeData = timeData;
+    });
+
+
+
+
+  },
+
   watch: {
     startDate: {
       handler: function (current, preview) {
-        console.log(this.startDate, "x");
+        console.log(this.startDate, "y");
       },
       deep: true,
     },
@@ -90,16 +168,6 @@ export default {
         console.log(this.endDate, "x");
       },
       deep: true,
-    },
-  },
-  methods: {
-    onPointClick({ target }) {
-      target.select();
-    },
-    filterData() {
-      // Lógica para filtrar dados baseada nas datas selecionadas
-      console.log(`Filtrando dados de ${this.startDate} até ${this.endDate}`);
-      // Atualizar os dados dos gráficos aqui
     },
   },
 };
