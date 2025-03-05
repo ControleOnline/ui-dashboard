@@ -38,13 +38,7 @@ items:[],
         format: function (value) {
           return value?.name + " - " + value?.alias;
         },
-        formatList: function (value) {
-          if (value)
-            return {
-              value: value["@id"].split("/").pop(),
-              label: value.name + " - " + value.alias,
-            };
-        },
+
         saveFormat: function (value) {
           return value ? "/people/" + (value.value || value) : null;
         },
@@ -71,14 +65,7 @@ items:[],
           return "/categories/" + parseInt(value.value || value);
           //else return parseInt(value.value || value);
         },
-        formatList: function (value) {
-          return value
-            ? {
-                label: value?.name,
-                value: value?.id,
-              }
-            : null;
-        },
+
       },
       {
         sortable: true,
@@ -96,13 +83,7 @@ items:[],
             color: value?.status?.color,
           };
         },
-        formatList: function (value) {
-          if (value)
-            return {
-              value: value["@id"].split("/").pop(),
-              label: value?.status,
-            };
-        },
+
         saveFormat: function (value) {
           return value ? "/statuses/" + (value?.value || value) : null;
         },
@@ -132,13 +113,7 @@ items:[],
         format: function (value) {
           return value?.wallet;
         },
-        formatList: function (value) {
-          if (value)
-            return {
-              value: value["@id"].split("/").pop(),
-              label: value?.wallet,
-            };
-        },
+
         saveFormat: function (value) {
           return value ? "/wallets/" + (value?.value || value) : null;
         },
@@ -155,14 +130,7 @@ items:[],
         format: function (value) {
           return value?.paymentType;
         },
-        formatList: function (value) {
-          if (value)
-            return {
-              value: value["@id"].split("/").pop(),
-              label: value?.paymentType,
-              object: value,
-            };
-        },
+
         saveFormat: function (value) {
           return value ? "/payment_types/" + (value?.value || value) : null;
         },
