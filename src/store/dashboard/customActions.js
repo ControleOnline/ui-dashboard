@@ -16,7 +16,7 @@ export function getHoursTicket ({ commit }, data) {
     .then((data) => {
       commit(types.SET_ISLOADING, false);
 
-      return data["hydra:member"] || null;
+      return data["member"] || null;
     })
     .catch((e) => {
       commit(types.SET_ISLOADING, false);
@@ -40,7 +40,7 @@ export function getTicketValue ({ commit }, data) {
     .then((data) => {
       commit(types.SET_ISLOADING, false);
 
-      return data["hydra:member"] || null;
+      return data["member"] || null;
     })
     .catch((e) => {
       commit(types.SET_ISLOADING, false);
