@@ -71,7 +71,7 @@ export default {
   methods: {
 
     ...mapActions({
-      getHoursTicket: 'dashboard/getHoursTicket',
+      getHoursTicket: 'report/getHoursTicket',
     }),
 
 

@@ -61,7 +61,7 @@ items:[],
             color: value?.category?.color,
           };
         },
-        saveFormat: function (value, column, row) {
+        saveFormat: function (value, _column, _row) {
           //if (row && row["@id"])
           return "/categories/" + parseInt(value.value || value);
           //else return parseInt(value.value || value);
@@ -150,7 +150,7 @@ items:[],
         saveFormat(value) {
           return parseInt(value || 1);
         },
-        format(value, column, row, editing) {
+        format(_value, _column, row, _editing) {
           if (row?.paymentType?.frequency == "single") {
             return "1X";
           }
