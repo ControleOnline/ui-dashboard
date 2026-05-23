@@ -1,5 +1,5 @@
 ## Escopo
-- Modulo de dashboards e visoes resumidas antigas.
+- Modulo de reports e visoes resumidas antigas.
 - A implementacao encontrada aqui hoje esta em Vue legado.
 
 ## Estado
@@ -8,4 +8,4 @@
 - So mexer em `src/vue` se o pedido for explicitamente sobre este fluxo ou se nao houver alternativa atual.
 
 ## Quando usar
-- Prompts sobre dashboards antigos e paines herdados do Quasar.
+- Prompts sobre reports antigos e paines herdados do Quasar.

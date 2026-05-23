@@ -75,7 +75,7 @@ export default {
   methods: {
 
     ...mapActions({
-      getTicketValue: 'dashboard/getTicketValue',
+      getTicketValue: 'report/getTicketValue',
     }),
 
     getFirstAndLastDates(resultArray) {

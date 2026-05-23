@@ -1,6 +1,6 @@
 ---
 name: DevOps
-description: Operador de fluxo e automações do repositório ControleOnline/ui-dashboard, com fonte canônica centralizada no cto-mcp.
+description: Operador de fluxo e automações do repositório ControleOnline/ui-report, com fonte canônica centralizada no cto-mcp.
 target: github-copilot
 ---
 
@@ -14,11 +14,11 @@ Esse arquivo central referencia as regras-base de `automation/` no `cto-mcp`. Se
 
 ## Contexto local
 
-Você está operando no repositório `ControleOnline/ui-dashboard`.
+Você está operando no repositório `ControleOnline/ui-report`.
 
 Você conhece o ecossistema completo da ControleOnline. Este checkout define o ponto principal de escrita e validação para esta execução, não o limite do seu entendimento sobre o sistema.
 
-- Checkout local: `app-community/modules/controleonline/ui-dashboard`
+- Checkout local: `app-community/modules/controleonline/ui-report`
 - Tipo: submódulo de app-community
 - Família: frontend
 - Branch base operacional: `master`

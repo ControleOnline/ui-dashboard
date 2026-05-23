@@ -1,12 +1,12 @@
 export const routes = [
   {
-    path: "/dashboard/",
+    path: "/report/",
     component: () => import("@controleonline/ui-layout/src/vue/layouts/AdminLayout.vue"),
     children: [
       {
-        name: "DashboardIndex",
+        name: "ReportIndex",
         path: "",
-        component: () => import("../pages/DashboardPage.vue"),
+        component: () => import("../pages/ReportPage.vue"),
       },
     ],
   },

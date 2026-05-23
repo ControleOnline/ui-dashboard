@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="q-pa-md">
-      <h6>Dashboard</h6>
+      <h6>Report</h6>
       <!-- Campos de data para filtragem -->
       <div class="q-gutter-md row items-center q-mb-md">
         <q-input
