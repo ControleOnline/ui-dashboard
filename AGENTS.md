@@ -1,11 +1,11 @@
 ## Escopo
-- Modulo de reports e visoes resumidas antigas.
-- A implementacao encontrada aqui hoje esta em Vue legado.
+- Modulo de reports e visoes resumidas.
+- A implementacao atual fica em React.
 
 ## Estado
-- Este modulo hoje nao tem `src/react`; a implementacao disponivel fica em `src/vue`.
-- Em novos prompts, priorizar modulos React equivalentes quando existirem.
-- So mexer em `src/vue` se o pedido for explicitamente sobre este fluxo ou se nao houver alternativa atual.
+- `src/react` contem os componentes, paginas e rotas.
+- `src/store` contem o estado e as actions.
+- Em novos prompts, usar sempre essa divisao e evitar qualquer duplicacao.
 
 ## Quando usar
-- Prompts sobre reports antigos e paines herdados do Quasar.
+- Prompts sobre reports, dashboards e cards de insight.
