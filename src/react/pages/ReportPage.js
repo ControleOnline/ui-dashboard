@@ -1,3 +1,16 @@
+/*
+ * Contract imported from AGENTS.md
+ * ## Escopo
+ * - `ui-report` e o modulo React de indicadores e relatorios operacionais.
+ * - Esta pagina e leitura de dados e nao deve mutar o dominio.
+ *
+ * ## Estado
+ * - Se existir `src/vue`, ela e apenas legado e nao deve receber este contrato.
+ *
+ * ## Limites
+ * - Nao duplicar cards ou metricas em outros modulos.
+ * - Manter aqui apenas a composicao da visualizacao analitica.
+ */
 import React, {useCallback, useMemo} from 'react';
 import {Pressable, RefreshControl, ScrollView, Text, View, useWindowDimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
