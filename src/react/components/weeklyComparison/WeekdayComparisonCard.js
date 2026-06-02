@@ -323,7 +323,7 @@ const WeekdayComparisonCard = ({
                               {
                                 height,
                                 backgroundColor: resolveProgressColor(
-                                  accentColor || '#0EA5E9',
+                                  accentColor,
                                   index,
                                   points.length,
                                 ),

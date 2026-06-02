@@ -65,7 +65,7 @@ const OperationalInsightsAbcCard = ({
           key: normalizeText(item?.key || item?.label || String(index)),
           label: normalizeText(item?.label || item?.name || item?.key || 'Item'),
           bucket: bucket || '-',
-          bucketColor: BUCKET_COLORS[bucket] || accentColor || '#0EA5E9',
+          bucketColor: BUCKET_COLORS[bucket] || accentColor,
           units: normalizeNumber(item?.units),
           share,
           cumulativeShare,
@@ -89,7 +89,7 @@ const OperationalInsightsAbcCard = ({
         <View style={{gap: 10}}>
           <View style={styles.bucketGrid}>
             {normalizedBuckets.map(bucket => {
-              const bucketColor = BUCKET_COLORS[bucket.bucket] || accentColor || '#0EA5E9';
+              const bucketColor = BUCKET_COLORS[bucket.bucket] || accentColor;
 
               return (
                 <View
