@@ -5,7 +5,6 @@
  * - Esta pagina e leitura de dados e nao deve mutar o dominio.
  *
  * ## Estado
- * - Se existir `src/vue`, ela e apenas legado e nao deve receber este contrato.
  *
  * ## Limites
  * - Nao duplicar cards ou metricas em outros modulos.
