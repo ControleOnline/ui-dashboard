@@ -195,7 +195,7 @@ const resolveTrendMeta = week => {
     case 'down':
       return {
         icon: 'trending-down',
-        color: '#EF4444',
+        color: '#c10015',
         label:
           week?.growthPercent !== null
             ? formatSignedPercent(week.growthPercent)

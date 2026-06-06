@@ -11,8 +11,8 @@ import {
 
 const BUCKET_COLORS = {
   A: '#16A34A',
-  B: '#F59E0B',
-  C: '#EF4444',
+  B: '#e67e22',
+  C: '#c10015',
 };
 
 const OperationalInsightsAbcCard = ({
