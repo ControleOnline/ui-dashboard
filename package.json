@@ -21,8 +21,12 @@
     "url": "https://github.com/rchdev/conline-quasar-ui"
   },
   "bugs": "",
-  "homepage": "https://www.controleonline.com/devs/plugins",  
+  "homepage": "https://www.controleonline.com/devs/plugins",
   "browserslist": [
     "last 1 version, not dead, ie >= 11"
-  ]
+  ],
+  "dependencies": {
+    "@controleonline/ui-common": "*",
+    "@controleonline/ui-default": "*"
+  }
 }
