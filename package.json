@@ -2,9 +2,9 @@
   "name": "@controleonline/ui-report",
   "version": "1.2.46",
   "author": "Controle Online",
-  "description": "ControleOnline Report Quasar UI Component",
+  "description": "ControleOnline Report React UI Component",
   "license": "MIT",
-  "main": "src/vue/index.js",
+  "main": "src/react/index.js",
   "scripts": {
     "dev": "cd dev && yarn dev && cd ..",
     "dev:umd": "yarn build && node build/script.open-umd.js",
@@ -21,8 +21,12 @@
     "url": "https://github.com/rchdev/conline-quasar-ui"
   },
   "bugs": "",
-  "homepage": "https://www.controleonline.com/devs/plugins",  
+  "homepage": "https://www.controleonline.com/devs/plugins",
   "browserslist": [
     "last 1 version, not dead, ie >= 11"
-  ]
+  ],
+  "dependencies": {
+    "@controleonline/ui-common": "*",
+    "@controleonline/ui-default": "*"
+  }
 }
