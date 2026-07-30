@@ -7,7 +7,7 @@ import {useStore} from '@store';
 import {app_type_base} from '@appType';
 import {resolveThemePalette, withOpacity} from '@controleonline/../../src/styles/branding';
 import {colors} from '@controleonline/../../src/styles/colors';
-import {APP_ENV} from '../../../../../../../config/env';
+import {env as APP_ENV} from '@env';
 import {resolveAppDomain} from '@controleonline/ui-common/src/utils/appDomain';
 import Formatter from '@controleonline/ui-common/src/utils/formatter';
 import FlowchartVisualEditor from './FlowchartVisualEditor';
