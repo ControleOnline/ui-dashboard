@@ -104,8 +104,13 @@ export default function FlowchartsPage({navigation, route}) {
   );
   const routeFlowId = String(route?.params?.id || '').replace(/\D+/g, '');
   const [activeFlowId, setActiveFlowId] = useState('');
+  const [isCreatingFlow, setIsCreatingFlow] = useState(false);
   const activeFlow = useMemo(
     () => {
+      if (isCreatingFlow) {
+        return null;
+      }
+
       const loadedFlowId = normalizeFlowId(loadedFlow);
 
       if (activeFlowId && loadedFlowId === activeFlowId) {
@@ -116,12 +121,11 @@ export default function FlowchartsPage({navigation, route}) {
       flowcharts[0] ||
       null;
     },
-    [activeFlowId, flowcharts, loadedFlow],
+    [activeFlowId, flowcharts, isCreatingFlow, loadedFlow],
   );
   const [draftTitle, setDraftTitle] = useState('');
   const [draftSummary, setDraftSummary] = useState('');
   const [draftMermaid, setDraftMermaid] = useState('');
-  const [isCreatingFlow, setIsCreatingFlow] = useState(false);
   const [isEditingFlow, setIsEditingFlow] = useState(false);
   const [isFlowMaximized, setIsFlowMaximized] = useState(false);
   const [saveStatus, setSaveStatus] = useState('');
@@ -163,19 +167,6 @@ export default function FlowchartsPage({navigation, route}) {
     [navigation, routeFlowId],
   );
 
-  const clearUrlFlowId = useCallback(() => {
-    if (!routeFlowId) {
-      return;
-    }
-
-    if (navigation?.replace) {
-      navigation.replace('FlowchartsPage');
-      return;
-    }
-
-    navigation?.navigate?.('FlowchartsPage');
-  }, [navigation, routeFlowId]);
-
   const loadFlowById = useCallback(
     flowId => {
       const normalizedFlowId = String(flowId || '').replace(/\D+/g, '');
@@ -205,12 +196,12 @@ export default function FlowchartsPage({navigation, route}) {
   );
 
   useEffect(() => {
-    if (!isAdminApp || !routeFlowId) {
+    if (!isAdminApp || !routeFlowId || isCreatingFlow) {
       return;
     }
 
     void loadFlowById(routeFlowId);
-  }, [isAdminApp, loadFlowById, routeFlowId]);
+  }, [isAdminApp, isCreatingFlow, loadFlowById, routeFlowId]);
 
   useEffect(() => {
     if (!flowcharts.length) {
@@ -273,7 +264,6 @@ export default function FlowchartsPage({navigation, route}) {
   );
 
   const handleNewFlow = useCallback(() => {
-    clearUrlFlowId();
     setIsCreatingFlow(true);
     setIsEditingFlow(true);
     setIsFlowMaximized(false);
@@ -283,7 +273,7 @@ export default function FlowchartsPage({navigation, route}) {
     setDraftMermaid(DEFAULT_NEW_MERMAID);
     setSaveStatus('');
     setSaveError('');
-  }, [clearUrlFlowId]);
+  }, []);
 
   const handleSave = useCallback(async () => {
     if ((!activeFlow && !isCreatingFlow) || isSaving) {
@@ -328,6 +318,7 @@ export default function FlowchartsPage({navigation, route}) {
     flowchartsStore.actions,
     isCreatingFlow,
     isSaving,
+    syncUrlFlowId,
   ]);
 
   if (!isAdminApp) {
@@ -359,6 +350,7 @@ export default function FlowchartsPage({navigation, route}) {
             <View style={styles.sidebarHeader}>
               <Text style={styles.sidebarTitle}>Fluxos</Text>
               <Pressable
+                accessibilityLabel="Novo fluxo"
                 accessibilityRole="button"
                 onPress={handleNewFlow}
                 style={({pressed}) => [
