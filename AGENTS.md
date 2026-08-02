@@ -1,11 +1,5 @@
-## Escopo
-- Modulo de reports e visoes resumidas antigas.
-- A implementacao encontrada aqui hoje esta em Vue legado.
+# ui-report
 
-## Estado
-- Este modulo hoje nao tem `src/react`; a implementacao disponivel fica em `src/vue`.
-- Em novos prompts, priorizar modulos React equivalentes quando existirem.
-- So mexer em `src/vue` se o pedido for explicitamente sobre este fluxo ou se nao houver alternativa atual.
+## Qualidade de código
 
-## Quando usar
-- Prompts sobre reports antigos e paines herdados do Quasar.
+- A barra comum de modularizacao, testes, smoke tests e limite de tamanho de componentes vive em `https://github.com/ControleOnline/agents-mcp/blob/master/skills/shared/code-quality.md`.
