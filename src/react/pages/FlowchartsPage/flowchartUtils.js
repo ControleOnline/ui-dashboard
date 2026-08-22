@@ -1,12 +1,25 @@
 import Formatter from '@controleonline/ui-common/src/utils/formatter';
+import {
+  digitsOnly,
+  normalizeFlowId,
+  shouldNavigateToFlowId,
+  shouldLoadFlowById,
+  resolveActiveFlow,
+} from './flowchartNavigation';
+
+export {
+  digitsOnly,
+  normalizeFlowId,
+  shouldNavigateToFlowId,
+  shouldLoadFlowById,
+  resolveActiveFlow,
+};
 
 export const NEW_FLOW_ID = '__new-flowchart__';
 
 export const DEFAULT_NEW_MERMAID = `flowchart TD
   start["Novo fluxo"] --> step["Edite o Mermaid"]
   step --> done["Salvar no tenant"]`;
-
-export const normalizeFlowId = flow => String(flow?.id || flow?.flowKey || flow?.flow_key || '');
 
 export const repairText = value => Formatter.repairMojibake(value);
 
@@ -50,5 +63,3 @@ export const normalizeFlowcharts = flowcharts =>
 
       return String(a.title || '').localeCompare(String(b.title || ''));
     });
-
-export const digitsOnly = value => String(value || '').replace(/\D+/g, '');

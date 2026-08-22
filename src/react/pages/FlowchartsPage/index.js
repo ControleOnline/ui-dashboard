@@ -22,6 +22,9 @@ import {
   buildFlowKey,
   normalizeFlowcharts,
   digitsOnly,
+  shouldNavigateToFlowId,
+  shouldLoadFlowById,
+  resolveActiveFlow,
 } from './flowchartUtils';
 
 const buildPalette = basePalette => ({
@@ -67,21 +70,13 @@ export default function FlowchartsPage({navigation, route}) {
   const [isCreatingFlow, setIsCreatingFlow] = useState(false);
   const loadingFlowIdRef = useRef('');
   const activeFlow = useMemo(
-    () => {
-      if (isCreatingFlow) {
-        return null;
-      }
-
-      const loadedFlowId = normalizeFlowId(loadedFlow);
-
-      if (activeFlowId && loadedFlowId === activeFlowId) {
-        return loadedFlow;
-      }
-
-      return flowcharts.find(flow => normalizeFlowId(flow) === activeFlowId) ||
-      flowcharts[0] ||
-      null;
-    },
+    () =>
+      resolveActiveFlow({
+        isCreatingFlow,
+        activeFlowId,
+        loadedFlow,
+        flowcharts,
+      }),
     [activeFlowId, flowcharts, isCreatingFlow, loadedFlow],
   );
   const [draftTitle, setDraftTitle] = useState('');
@@ -115,7 +110,7 @@ export default function FlowchartsPage({navigation, route}) {
   const navigateToFlowId = useCallback(
     flowId => {
       const normalizedFlowId = digitsOnly(flowId);
-      if (!normalizedFlowId || normalizedFlowId === routeFlowId) {
+      if (!shouldNavigateToFlowId(normalizedFlowId, routeFlowId)) {
         return;
       }
 
@@ -132,16 +127,20 @@ export default function FlowchartsPage({navigation, route}) {
   const loadFlowById = useCallback(
     flowId => {
       const normalizedFlowId = digitsOnly(flowId);
-      if (!normalizedFlowId) {
-        return Promise.resolve(null);
-      }
-
-      if (loadingFlowIdRef.current === normalizedFlowId) {
-        return Promise.resolve(null);
-      }
-      const loadedId = normalizeFlowId(flowchartsStore.getters?.item);
-      if (loadedId === normalizedFlowId && activeFlowId === normalizedFlowId) {
-        return Promise.resolve(flowchartsStore.getters?.item);
+      if (
+        !shouldLoadFlowById({
+          targetFlowId: normalizedFlowId,
+          loadingFlowId: loadingFlowIdRef.current,
+          loadedFlowId: normalizeFlowId(flowchartsStore.getters?.item),
+          activeFlowId,
+        })
+      ) {
+        return Promise.resolve(
+          digitsOnly(normalizeFlowId(flowchartsStore.getters?.item)) ===
+            normalizedFlowId
+            ? flowchartsStore.getters?.item
+            : null,
+        );
       }
 
       loadingFlowIdRef.current = normalizedFlowId;
