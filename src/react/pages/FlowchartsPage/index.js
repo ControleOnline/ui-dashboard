@@ -202,8 +202,6 @@ export default function FlowchartsPage({navigation, route}) {
 
   useEffect(() => {
     if (isCreatingFlow) {
-  useEffect(() => {
-    if (isCreatingFlow) {
       return;
     }
 
